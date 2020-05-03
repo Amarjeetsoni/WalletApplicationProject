@@ -1,0 +1,74 @@
+<div class="row">
+    <div>
+        <br>
+        <button class="btn btn-default fa fa-user-circle-o" type="button" id="dropdownMenuButton" data-toggle="dropdown"
+            aria-haspopup="true" aria-expanded="false"
+            style="font-size: 30px; align-items:center;background-color: silver;"> {{user_name}} &nbsp;</button>
+    </div>
+    <div class="offset-lg-1 offset-md-1 offset-sm-1 col-lg-7 col-md-7">
+        <div class="text-center text-danger">
+            <br>
+            <i style="font-family: fantasy; font-size: 3vw; color: white">WITHDRAW AMOUNT</i>
+        </div>
+    </div>
+    <div class="offset-lg-1 offset-md-1 offset-sm-1">
+        <br>
+        <button class="btn btn-danger" (click)="logOutUser()" style="font-size: 1vw;">Log Out <i
+                class="fa fa-sign-out"></i></button>
+    </div>
+
+</div>
+<div class="offset-lg-3 offset-md-3 col-lg-6 col-md-6 shadow-lg p-4 mb-5 bg-white rounded" style="margin-top: 5%;">
+    <i class="fa fa-share-square-o" style="margin-left:40%;margin-top: -15%; font-size: 10vw;"></i>
+    <!-- formGroup to take the input form user -->
+    <form [formGroup]="addForm" (ngSubmit)="WithdrawAmount()">
+
+        <div class="form-group row">
+
+            <label for="Amount" class="col-lg-4 col-md-4 col-sm-4 text-right font-weight-bold" style="font-size:18px;">
+                Enter Amount<sup style="color: red;">*</sup> &nbsp;&nbsp;&#8377;
+            </label>
+            <div class="col-lg-6">
+                <input type="number" class="form-control " placeholder="Enter Amount" formControlName="Amount"
+                    style="font-size: 18px;" />
+                <!-- Validation checking on amount -->
+                <div *ngIf="submitted && addForm.controls.Amount.errors">
+                    <div class="text-danger" *ngIf="addForm.controls.Amount.errors.required">
+                        Amount is required...!
+                    </div>
+                    <div class="text-danger" *ngIf="addForm.controls.Amount.errors.min">
+                        Amount must be greater then 0...!
+                    </div>
+                </div>
+                <div class="text-danger" *ngIf="check">
+                    Amount should be less then your account balance...!
+                </div>
+            </div>
+        </div>
+        <div class="form-group row">
+            <label for="password" class="col-lg-4 col-md-4 col-sm-4 text-right font-weight-bold"
+                style="font-size:18px;">Password<sup style="color: red;">*</sup> &nbsp;&nbsp;<i
+                    class="fa fa-key"></i></label>
+            <div class="col-lg-6">
+                <input type="password" class="form-control" formControlName="password" placeholder="Password" />
+                <!-- validation checking on password -->
+                <div *ngIf="submitted && addForm.controls.password.errors" class="error">
+                    <div class="text-danger" *ngIf="addForm.controls.password.errors.required">
+                        Password is required ..
+                    </div>
+                </div>
+            </div>
+            <br>
+        </div>
+        <button class="offset-lg-4 offset-md-4 btn btn-warning" style="font-size: 15px;" *ngIf="processing">Processing..
+            <i class="fa fa-gear fa-spin"></i></button>
+        <button class="offset-lg-4 offset-md-4 btn btn-success" style="font-size: 15px;"
+            *ngIf="processing==false">WithDraw <i class="fa fa-share-square-o"></i></button>&nbsp;
+        <button class="btn btn-danger" routerLink="/home" style="font-size: 15px;">cancel <i
+                class="fa fa-times"></i></button>
+        <div class="text-danger" *ngIf="WrongPassword">
+            Password is Wrong..
+        </div>
+    </form>
+    <!-- End of form group -->
+</div>

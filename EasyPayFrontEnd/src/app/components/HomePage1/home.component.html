@@ -1,0 +1,134 @@
+<div class="row">
+
+    <div class="dropdown" style="padding: 12px">
+        <button class="btn btn-default fa fa-user-circle-o" type="button" id="dropdownMenuButton" data-toggle="dropdown"
+            aria-haspopup="true" aria-expanded="false"
+            style="font-size: 30px; align-items:center;background-color: silver;"> {{user_name}} &nbsp;<i
+                class="fa fa-sort-down"></i></button>
+        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton"
+            style="background-color: cyan; color: snow;">
+            <div class="dropdown-item" style="background-color: cornsilk;">
+                <h2 style="font-family: fantasy;"><i class="fa fa-user-circle" style="font-size: 80px;"></i>
+                    &nbsp;&nbsp;<a routerLink="/profile" class="btn btn-default" style="font-size: 30px;">{{name}}</a>
+                </h2>
+                <br>
+            </div>
+            <div class="dropdown-item" style="background-color: darkorchid;">
+                <br>
+                <h5 style="color: lightsteelblue;">Balance</h5>
+                <h1 style="font-family: fantasy; color: honeydew;">&#8377; {{currentBal}}</h1>
+            </div>
+            <div class="dropdown-item" style="background-color: lightyellow;">
+                Menu
+            </div>
+            <a style="font-family: monospace;font-size: 18px;" routerLink="/deposit" class="dropdown-item"><i
+                    class="fa fa-university circle-icon"
+                    style="font-size: 25px; color: lightyellow;"></i>&nbsp;&nbsp;&nbsp; Deposit Amount</a>
+            <a style="font-family: monospace;font-size: 18px;" routerLink="/withdraw" class="dropdown-item"><i
+                    class="fa fa-share-square-o circle-icon"
+                    style="font-size: 25px; color: lightyellow;"></i>&nbsp;&nbsp;&nbsp; Withdraw Amount</a>
+            <a style="font-family: monospace;font-size: 18px;" routerLink="/fund" class="dropdown-item"><i
+                    class="fa fa-handshake-o circle-icon"
+                    style="font-size: 25px; color: lightyellow;"></i>&nbsp;&nbsp;&nbsp; Fund Transfer</a>
+            <a style="font-family: monospace;font-size: 18px;" routerLink="/print" class="dropdown-item"><i
+                    class="fa fa-newspaper-o circle-icon"
+                    style="font-size: 25px; color: lightyellow;"></i>&nbsp;&nbsp;&nbsp; Print Transaction</a>
+            <div class=" dropdown-item">
+                <i class="fa fa-sign-out circle-icon" style="font-size: 25px; color: lightyellow;"></i>
+                <button class="offset-lg-4 offset-md-4 btn btn-outline-danger" (click)="logOutUser()"
+                    style="text-align: left;">Log Out <i class="fa fa-sign-out"></i></button>
+            </div>
+        </div>
+    </div>
+    <div class="offset-lg-1 offset-md-1 offset-sm-1 col-lg-7 col-md-7">
+        <div class="text-center text-danger">
+            <br><br>
+            <i style="font-family: fantasy; font-size: 3vw;color:white" class="threeD">Home Page</i>
+        </div>
+    </div>
+    <div class="offset-lg-1 offset-md-1 offset-sm-1">
+        <br>
+        <button class="btn btn-danger" (click)="logOutUser()" style="font-size: 1vw;">Log Out <i
+                class="fa fa-sign-out"></i></button>
+    </div>
+
+</div>
+<br><br>
+<h2 style="text-align: center;background-color: honeydew;color: maroon; font-size: 2vw;"> CONTENTS </h2>
+<br>
+<div class="row">
+    <div class="card col-lg-4 col-md-4 col-sm-12" style="width: 18rem;">
+        <div class="card-body" style="text-align: center;  background-color: rgb(31, 29, 29)">
+            <h4 class="card-title"><i class="fa fa-address-card" style="font-size: 15vw;color: white;"></i></h4>
+            <a routerLink="/profile" class="btn btn-primary">View Profile <i class="fa fa-address-card"></i></a>
+        </div>
+    </div>
+
+
+
+
+
+    <div class="card col-lg-4 col-md-4 col-sm-12" style="width: 18rem;">
+        <div class="card-body" style="text-align: center; background-color: rgb(31, 29, 29);">
+            <h4 class="card-title"><i class="fa fa-money" style="font-size: 15vw;color: white;"></i></h4>
+            <button class="btn btn-primary" onclick="document.getElementById('id01').style.display='block'"
+                style="width:auto;">Show Balance <i class="fa fa-money"></i></button>
+        </div>
+        <div id="id01" class="modal">
+
+            <form class="modal-content animate">
+                <div class="imgcontainer">
+                    <span onclick="document.getElementById('id01').style.display='none'" class="close"
+                        title="Close Modal">&times;</span>
+                </div>
+
+                <div class="container">
+                    <h1 style="font-family: fantasy; text-align: center;color: indigo; font-size: 40px;">Easy Pay</h1>
+                    <br><br>
+
+                </div>
+                <div class="offset-lg-1 offset-md-1 offset-sm-1 col-lg-10 col-md-10 col-sm-10"
+                    style="text-align: center; background-color: silver;">
+                    <h1>Your Account Balance IS: </h1>
+                    <h1>&#8377; &nbsp; {{currentBal}}</h1>
+                </div>
+                <br><br>
+                <button type="button" onclick="document.getElementById('id01').style.display='none'"
+                    class="offset-lg-5 offset-md-5 col-lg-2 col-md-2 cancelbtn btn-danger"
+                    style="font-size: 25px;">Close <i class="fa fa-paper-plane"></i></button>
+                <br>
+            </form>
+        </div>
+    </div>
+    <div class="card col-lg-4 col-md-4 col-sm-12" style="width: 18rem;">
+        <div class="card-body" style="text-align: center; background-color: rgb(31, 29, 29)">
+            <h4 class="card-title"><i class="fa fa-university" style="font-size: 15vw; color: white;"></i> </h4>
+
+            <a routerLink="/deposit" class="btn btn-primary">deposit money <i class="fa fa-university"></i></a>
+        </div>
+    </div>
+</div>
+<br>
+<div class="row">
+    <div class="card col-lg-4 col-md-4 col-sm-12" style="width: 18rem;">
+        <br>
+        <div class="card-body" style="text-align: center; background-color: rgb(31, 29, 29)">
+            <h4 class="card-title"><i class="fa fa-share-square-o" style="font-size: 15vw;color: white;"></i></h4>
+            <a routerLink="/withdraw" class="btn btn-primary">Withdraw amount <i class="fa fa-share-square-o"></i></a>
+        </div>
+    </div>
+    <div class="card col-lg-4 col-md-4 col-sm-12" style="width: 18rem;">
+        <div class="card-body" style="text-align: center; background-color: rgb(31, 29, 29);">
+            <h4 class="card-title"><i class="fa fa-handshake-o" style="font-size: 15vw;color: white;"></i></h4>
+            <a routerLink="/fund" class="btn btn-primary">Fund Transfer <i class="fa fa-handshake-o"></i></a>
+        </div>
+    </div>
+    <div class="card col-lg-4 col-md-4 col-sm-12" style="width: 18rem;">
+        <div class="card-body" style="text-align: center; background-color: rgb(31, 29, 29);">
+            <h4 class="card-title"><i class="fa fa-newspaper-o" style="font-size: 15vw;color: white;"></i></h4>
+            <a routerLink="/print" class="btn btn-primary">Print Transaction <i class="fa fa-newspaper-o"></i></a>
+        </div>
+    </div>
+</div>
+<br>
+<br><br>

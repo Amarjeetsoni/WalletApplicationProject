@@ -1,0 +1,52 @@
+<div class="row">
+    <div>
+        <br>
+        <button class="btn btn-default fa fa-user-circle-o" type="button" id="dropdownMenuButton" data-toggle="dropdown"
+            aria-haspopup="true" aria-expanded="false"
+            style="font-size: 30px; align-items:center;background-color: silver;"> {{user_name}} &nbsp;</button>
+    </div>
+    <div class="offset-lg-1 offset-md-1 offset-sm-1 col-lg-7 col-md-7">
+        <div class="text-center text-danger">
+            <br>
+            <i style="font-family: fantasy; font-size: 3vw; color: white">PRINT TRANSACTION</i>
+        </div>
+    </div>
+    <div class="offset-lg-1 offset-md-1 offset-sm-1">
+        <br>
+        <button class="btn btn-danger" (click)="logOutUser()" style="font-size: 1vw;">Log Out <i
+                class="fa fa-sign-out"></i></button>
+    </div>
+    <br>
+</div>
+<!-- print all transaction  -->
+<div class="offset-lg-1 offset-md-1 col-lg-10 col-md-10 shadow-lg p-3 mb-5 bg-dark rounded" style="margin-top: 6%;">
+    <i class="fa fa-newspaper-o" style="margin-left:40%;margin-top: -7%; font-size: 10vw;color: darkgray;"></i>
+    <div class="table-wrapper-scroll-y my-custom-scrollbar">
+        <div *ngIf="getValue">
+            <h5 style="text-align: center;color: white;">Please Wait...<i class="fa fa-spinner fa-spin"></i></h5>
+        </div>
+        <table class="table" cellpadding="20" style="color: white;">
+            <tr style="color: gold;">
+                <th></th>
+                <th style="font-size: 2vw;">Transaction statement</th>
+                <th style="font-size: 2vw;">Action</th>
+                <th style="font-size: 2vw;">Transaction Date</th>
+            </tr>
+            <tr *ngFor="let trans of transaction;let i = index" style="color: white;">
+                <td><i class="fa fa-hand-o-right"></i></td>
+                <td>{{trans.statement}}
+                </td>
+                <td>
+                    <h5 *ngIf="trans.actionType==1" style="color: rgb(109, 255, 109);">{{trans.action}}</h5>
+                    <h5 *ngIf="trans.actionType==-1" style="color: rgb(255, 121, 121);">{{trans.action}}</h5>
+                </td>
+                <td>{{trans.date}}
+                </td>
+                <hr style="height:2px;border-width:0;color:gray;background-color:gray">
+
+            </tr>
+            <br>
+        </table>
+    </div>
+    <button class="btn btn-success" routerLink="/home"><i class="fa fa-toggle-left"></i> Go Back</button>
+</div>

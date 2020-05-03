@@ -1,0 +1,150 @@
+<div class="row">
+    <div>
+        <br>
+        <button class="btn btn-default fa fa-user-circle-o" type="button" id="dropdownMenuButton" data-toggle="dropdown"
+            aria-haspopup="true" aria-expanded="false"
+            style="font-size: 30px; align-items:center;background-color: silver;"> {{username}} &nbsp;</button>
+    </div>
+    <div class="offset-lg-1 offset-md-1 offset-sm-1 col-lg-7 col-md-7">
+        <div class="text-center text-danger">
+            <br>
+            <i style="font-family: fantasy; font-size: 3vw; color: white">FUND TRANSFER</i>
+        </div>
+    </div>
+    <div class="offset-lg-1 offset-md-1 offset-sm-1">
+        <br>
+        <button class="btn btn-danger" (click)="logOutUser()" style="font-size: 1vw;">Log Out <i
+                class="fa fa-sign-out"></i></button>
+    </div>
+
+</div>
+<div class="row">
+
+    <div class="col-lg-5 col-md-5 col-sm-5 shadow-lg p-4 mb-5 bg-secondary rounded table-wrapper-scroll-y my-custom-scrollbar"
+        style="margin-top: 3%;">
+
+        <i class="fa fa-gear fa-spin" *ngIf="Loading==false"
+            style="text-align: center; font-size: 5vw;margin-top: 25%; margin-left: 35%;"></i>
+        <div class="form-group row" style="margin-top: 5%" *ngIf="Loading">
+            <div class="col-lg-3 col-md-3 col-sm-3">
+                <label for="user_name" class="text-primary font-weight-bold">
+                    Search By User_Name:
+                </label>
+                <input type="text" class="form-control" placeholder="Search" [(ngModel)]="searchText3" />
+            </div>
+            <div class="col-lg-3 col-md-3 col-sm-3">
+                <label for="firstName" class="text-primary font-weight-bold">
+                    Search By Full_Name:
+                </label>
+                <input type="text" class="form-control" placeholder="Search" [(ngModel)]="searchText1" />
+            </div>
+            <div class="col-lg-3 col-md-3 col-sm-3">
+                <label for="mobile_no" class="text-primary font-weight-bold">
+                    Search By Mobile_Number:
+                </label>
+                <input type="text" class="form-control" placeholder="Search" [(ngModel)]="searchText2" />
+            </div>
+
+        </div>
+        <table class="table table-bordered table-striped mb-0" style="color:white" *ngIf="noUser==false && Loading">
+            <tr style="color:palegreen">
+                <th>UserName</th>
+                <th>Name</th>
+                <th>Mobile number</th>
+                <th>Choose</th>
+            </tr>
+            <tr *ngFor="let user of allUser | search:searchText1:searchText2:searchText3">
+                <td>{{user.user_name}}</td>
+                <td>{{user.firstName}}</td>
+                <td>{{user.mobile_no}}</td>
+                <td><button class="btn btn-success" (click)="getValue(user)"
+                        *ngIf="user.user_name != username">Select</button></td>
+            </tr>
+        </table>
+        <div *ngIf="noUser">
+            <h1>{{message}}</h1>
+        </div>
+    </div>
+    <div class="offset-lg-1 offset-md-1 offset-sm-1 col-lg-6 col-md-6 col-sm-6 shadow-lg p-4 mb-5 bg-white rounded"
+        style="margin-top: 3%;">
+        <form [formGroup]="addForm" (ngSubmit)="fundTransfer()">
+            <!-- First Name Text Box -->
+            <div class="form-group row">
+                <label for="user_name" class="col-lg-4 col-md-4 col-sm-4 text-right font-weight-bold">
+                    UserName<sup style="color: red;">*</sup> :
+                </label>
+                <div class="col-lg-6">
+                    <input type="text" disabled class="form-control " placeholder="Select recivers username"
+                        formControlName="user_name">
+                    <div *ngIf="submitted && addForm.controls.user_name.errors">
+                        <div class="text-danger" *ngIf="addForm.controls.user_name.errors.required">
+                            UserName is required ..!
+                        </div>
+                    </div>
+                    <div class="text-danger" *ngIf="UserNameValidation">
+                        UserName must be Diffrent then yours...!
+                    </div>
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="mobile_no" class="col-lg-4 col-md-4 col-sm-4 text-right font-weight-bold">
+                    Mobile Number<sup style="color: red;">*</sup> :
+                </label>
+                <div class="col-lg-6">
+                    <input type="text" disabled class="form-control " placeholder="Select recivers mobilenumber"
+                        formControlName="mobile_no">
+                    <div *ngIf="submitted && addForm.controls.mobile_no.errors">
+                        <div class="text-danger" *ngIf="addForm.controls.mobile_no.errors.required">
+                            Mobile number is required ..!
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="Amount" class="col-lg-4 col-md-4 col-sm-4 text-right font-weight-bold">
+                    Enter Amount<sup style="color: red;">*</sup>:
+                </label>
+                <div class="col-lg-6">
+                    <input type="number" class="form-control" placeholder="Amount" formControlName="Amount" />
+                    <div *ngIf="submitted && addForm.controls.Amount.errors">
+                        <div class="text-danger" *ngIf="addForm.controls.Amount.errors.required">
+                            Amount is required...!
+                        </div>
+                        <div class="text-danger" *ngIf="addForm.controls.Amount.errors.min">
+                            Amount must be greater then 0...!
+                        </div>
+                    </div>
+                    <div class="text-danger" *ngIf="checkBalance">
+                        Balance must be less then your account balance...!
+                    </div>
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="passord" class="col-lg-4 col-md-4 col-sm-4 text-right font-weight-bold">
+                    password<sup style="color: red;">*</sup> :
+                </label>
+                <div class="col-lg-6">
+                    <input type="password" class="form-control " placeholder="Enter password"
+                        formControlName="password">
+                    <div *ngIf="submitted && addForm.controls.password.errors">
+                        <div class="text-danger" *ngIf="addForm.controls.password.errors.required">
+                            password is required ..!
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <br><br>
+            <button class="offset-lg-3 offset-md-3 btn btn-warning" style="font-size: 15px;"
+                *ngIf="processing">Processing.. <i class="fa fa-gear fa-spin"></i></button>
+            <button class="offset-lg-2 offset-md-2 offset-sm-2 btn btn-outline-success"
+                *ngIf="processing==false">Transfer <i class="fa fa-handshake-o"></i></button>&nbsp;
+            <button class="btn btn-outline-warning" type="reset">cancel <i class="fa fa-close"></i></button> &nbsp;
+            <button class="btn btn-outline-danger" routerLink="/home">cancel Transaction <i
+                    class="fa fa-exclamation-triangle"></i></button>
+            <div class="text-danger" *ngIf="WrongpassWord">
+                password is Wrong..!
+            </div>
+        </form>
+
+    </div>
+</div>

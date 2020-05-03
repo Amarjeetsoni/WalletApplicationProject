@@ -1,0 +1,72 @@
+<div class="row">
+        <div>
+                <br>
+                <button class="btn btn-default fa fa-user-circle-o" type="button" id="dropdownMenuButton"
+                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
+                        style="font-size: 30px; align-items:center;background-color: silver;"> {{user_name}}
+                        &nbsp;</button>
+        </div>
+        <div class="offset-lg-1 offset-md-1 offset-sm-1 col-lg-7 col-md-7">
+                <div class="text-center text-danger">
+                        <br>
+                        <i style="font-family: fantasy; font-size: 3vw; color: white">View Profile</i>
+                </div>
+        </div>
+        <div class="offset-lg-1 offset-md-1 offset-sm-1">
+                <br>
+                <button class="btn btn-danger" (click)="logOutUser()" style="font-size: 1vw;">Log Out <i
+                                class="fa fa-sign-out"></i></button>
+        </div>
+
+</div>
+<div class="offset-lg-3 offset-md-3 col-lg-7 col-md-7 col-sm-7 shadow-lg p-3 bg-secondary mb-5 rounded"
+        style="margin-top: 5%;">
+        <!-- block to show to generic photo on the basis of their gender. -->
+        <i class="fa fa-female"
+                style="border-radius:200%; margin-left:32%;margin-top: -10%; font-size: 8vw;background-color: turquoise;width: 15%;"
+                *ngIf="isFemale"></i>
+        <i class="fa fa-male"
+                style="border-radius:200%; margin-left:32%;margin-top: -10%; font-size: 8vw;background-color: turquoise;width: 15%;"
+                *ngIf="isMale"></i>
+        <div class="table-wrapper-scroll-y my-custom-scrollbar" style="margin-top: 5%;">
+                <!-- showing Details of user  -->
+                <table class="table" style="color: white;">
+                        <tr>
+                                <td>User Name <i class="fa fa-user-o"></i>:</td>
+                                <td style="font-family: fantasy;font-size: 30px;">{{user_name}}</td>
+                        </tr>
+                        <hr style="height:2px;border-width:0;color:gray;background-color:gray">
+                        <tr>
+                                <td>Name: </td>
+                                <td style="font-family: fantasy;font-size: 30px;">{{name}}</td>
+                        </tr>
+                        <hr style="height:2px;border-width:0;color:gray;background-color:gray">
+
+                        <tr>
+                                <td>Gender: </td>
+                                <td style="font-family: fantasy;font-size: 30px;">{{gender}}</td>
+                        </tr>
+                        <hr style="height:2px;border-width:0;color:gray;background-color:gray">
+                        <tr>
+                                <td>Age <i class="fa fa-calendar"></i> : </td>
+                                <td style="font-family: fantasy;font-size: 30px;">{{dob}}</td>
+                        </tr>
+                        <hr style="height:2px;border-width:0;color:gray;background-color:gray">
+                        <tr>
+                                <td>Mobile Number <i class="fa fa-id-badge"></i>: </td>
+                                <td style="font-family: fantasy;font-size: 30px;">{{mobile_no}}</td>
+                        </tr>
+                        <hr style="height:2px;border-width:0;color:gray;background-color:gray">
+                        <tr>
+                                <td>Email Id <i class="fa fa-envelope"></i>: </td>
+                                <td style="font-family: fantasy;font-size: 30px;">{{emailId}}</td>
+                        </tr>
+                        <hr style="height:2px;border-width:0;color:gray;background-color:gray">
+                </table>
+        </div>
+        <br>
+        <button class="btn btn-warning" routerLink="/home">GO BACK</button>&nbsp;
+        <button class="btn btn-danger" routerLink="/forgot">Change Password</button>
+</div>
+
+<br><br>

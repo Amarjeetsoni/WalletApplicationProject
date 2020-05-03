@@ -1,0 +1,54 @@
+<div class="row">
+    <div class="col-lg-3 col-md-3"></div>
+    <div class="col-lg-6 col-md-6 shadow-lg p-3 mb-5 bg-dark rounded" style="margin-top: 6%;color:white">
+        <i class="fa fa-user img-circle" style="margin-left:39%;margin-top: -16%; font-size: 15vw;color:darkgray"></i>
+        <br />
+        <div>
+            <h3 style="font-size:3vw; font-family: fantasy;color: white; text-align: center;">Login</h3>
+            <br />
+            <form [formGroup]="loginForm" (ngSubmit)="verifyLogin()">
+                <div class="form-group">
+                    <label for="email" style="text-align: center;">User Name<sup style="color: red;">*</sup>
+                        &nbsp;&nbsp;<i class="fa fa-user"></i></label>
+                    <input type="text" class="form-control" formControlName="UserName" placeholder="Enter UserName" />
+
+                    <!-- Predefined Structural Directive -->
+                    <!-- *ngIf, *ngFor, *ngSwitchCase -->
+                    <div *ngIf="submitted && loginForm.controls.UserName.errors" class="error">
+                        <div class="text-danger" *ngIf="loginForm.controls.UserName.errors.required">
+                            UserId is required ..
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="password">Password<sup style="color: red;">*</sup> &nbsp;&nbsp;<i
+                            class="fa fa-key"></i></label>
+                    <input type="password" class="form-control" formControlName="password" placeholder="Password" />
+                    <div *ngIf="submitted && loginForm.controls.password.errors" class="error">
+                        <div class="text-danger" *ngIf="loginForm.controls.password.errors.required">
+                            Password is required ..
+                        </div>
+                    </div>
+                </div>
+                <!-- end of password -->
+                <div class="form-group text-center">
+                    <br>
+                    <button class="btn btn-block btn-primary" *ngIf="checkLogin==false">Login &nbsp;&nbsp;&nbsp;<i
+                            class="fa fa-sign-in"></i></button>
+                    <button class="btn btn-block btn-warning" *ngIf="checkLogin">Please Wait... &nbsp;&nbsp;<i
+                            class="fa fa-spinner fa-spin"></i></button>
+                    <button type="button" routerLink="/adduser" class="btn btn-block btn-success">New User? Register
+                        Here &nbsp;&nbsp;&nbsp;<i class="fa fa-user-plus"></i></button>
+                </div>
+                <span class="psw">Forgot <a [routerLink]="['/forgot']">password?</a></span>
+                <br />
+                <div *ngIf="invalidLogin">
+                    <div class="text-danger">
+                        Invalid Email or Password ..!
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<!-- end of row -->

@@ -1,0 +1,274 @@
+<br />
+<h3 style="font-family: fantasy; text-align: center; color: white;font-size: 50px">Create Account</h3>
+<div class="offset-lg-2 offset-md-2 col-md-9 col-lg-9 shadow-lg p-3 mb-5 bg-dark rounded" style="margin-top: 6%;">
+    <i class="fa fa-user-plus" style="margin-left:40%;margin-top: -15%; font-size: 10vw;color: springgreen;"></i>
+    <br /><br>
+
+    <!-- Reactive Forms -->
+    <!-- Designing Add User Form -->
+    <form [formGroup]="addForm" (ngSubmit)="addUser()" style="color: white;">
+        <!-- First Name Text Box -->
+        <div class="form-group row">
+            <label for="firstName" class="col-lg-2 col-md-2 col-sm-2 text-right font-weight-bold">
+                First Name<sup style="color: red;">*</sup> :
+            </label>
+
+            <div class="offset-lg-1 col-lg-7">
+                <input type="text" class="form-control " placeholder="First Name" formControlName="firstName" />
+
+                <div *ngIf="submitted && addForm.controls.firstName.errors" style="color: rgb(245, 106, 106);">
+                    <div *ngIf="addForm.controls.firstName.errors.required">
+                        First Name is required ..!
+                    </div>
+                    <div *ngIf="addForm.controls.firstName.errors.startWith">
+                        FirstName must begin with Capital letter..!
+                    </div>
+                    <div *ngIf="addForm.controls.firstName.errors.minlength">
+                        FirstName must be altleast of 3 digits ..!
+                    </div>
+                    <div *ngIf="addForm.controls.firstName.errors.containSpace">
+                        Name Should Not Contain space ..!
+                    </div>
+                    <div *ngIf="addForm.controls.firstName.errors.hasNumber">
+                        FirstName must Not Contain any number..!
+                    </div>
+                    <div *ngIf="addForm.controls.firstName.errors.hasSpecialCharacters">
+                        FirstName must Not Contain any Special Charater..!
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- End of  First Name Text Box -->
+
+        <div class="form-group row">
+            <!-- middle Name Text box -->
+            <label for="middleName" class="col-lg-2 col-md-2 col-sm-2 text-right font-weight-bold">
+                Middle Name :
+            </label>
+            <div class="offset-lg-1 col-lg-7">
+                <input type="text" class="form-control " placeholder="Middle Name" formControlName="middleName" />
+                <div *ngIf="submitted && addForm.controls.middleName.errors" style="color: rgb(245, 106, 106);">
+                    <div *ngIf="addForm.controls.middleName.errors.hasNumber">
+                        MiddleName must Not Contain any number..!
+                    </div>
+                    <div *ngIf="addForm.controls.middleName.errors.startWith">
+                        must begin with alphabets only ..!
+                    </div>
+                    <div *ngIf="addForm.controls.middleName.errors.containSpace">
+                        Name Should Not Contain space ..!
+                    </div>
+                    <div *ngIf="addForm.controls.middleName.errors.hasSpecialCharacters">
+                        MiddleNAme must Not Contain any Special Charater ..!
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <!-- End of middle name text box -->
+        <!-- Last Name Text Box -->
+        <div class="form-group row">
+            <label for="lastName" class="col-lg-2 col-md-2 col-sm-2 text-right font-weight-bold">
+                Last Name<sup style="color: red;">*</sup> :
+            </label>
+            <div class="offset-lg-1 col-lg-7">
+                <input type="text" class="form-control " placeholder="Last Name" formControlName="lastName" />
+
+                <div *ngIf="submitted && addForm.controls.lastName.errors" style="color: rgb(245, 106, 106);">
+                    <div *ngIf="addForm.controls.lastName.errors.required">
+                        Last Name is required ..!
+                    </div>
+                    <div *ngIf="addForm.controls.lastName.errors.containSpace">
+                        LastName Should Not Contain space ..!
+                    </div>
+                    <div *ngIf="addForm.controls.lastName.errors.hasNumber">
+                        LastName must Not Contain any number..!
+                    </div>
+                    <div *ngIf="addForm.controls.lastName.errors.hasSpecialCharacters">
+                        LastName must Not Contain any Special Charater..!
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- End of  Last Name Text Box -->
+        <!-- Age text box -->
+        <div class="form-group row">
+            <label for="dob" class="col-lg-2 col-md-2 col-sm-2 text-right font-weight-bold">
+                Age<sup style="color: red;">*</sup> <i class="fa fa-calendar"></i>:
+            </label>
+            <div class="offset-lg-1 col-lg-7">
+                <input type="number" class="form-control " placeholder="Enter age" formControlName="dob" />
+
+                <div *ngIf="submitted && addForm.controls.dob.errors" style="color: rgb(245, 106, 106);">
+                    <div *ngIf="addForm.controls.dob.errors.required">
+                        Age is required/ Age Should not contain e ..!
+                    </div>
+                    <div *ngIf="addForm.controls.dob.errors.min">
+                        Age must be Greater then 10 ..!
+                    </div>
+                    <div *ngIf="addForm.controls.dob.errors.max">
+                        Age must be Less then 100 ..!
+                    </div>
+                    <div *ngIf="addForm.controls.dob.errors.pattern">
+                        age Should Not Contain e ..!
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- End of Age -->
+        <!-- gender Text Box -->
+        <div class="form-group row">
+            <label for="gender" class="col-lg-2 col-md-2 col-sm-2 text-right font-weight-bold">
+                Gender<sup style="color: red;">*</sup> <i class="fa fa-male"></i>/<i class="fa fa-female"></i>:
+            </label>
+            <div class="offset-lg-1 col-lg-7">
+                <select formControlName="gender">
+                    <option value="">Select Option</option>
+                    <option value="male">Male </option>
+                    <option value="female">Female </option>
+                </select>
+                <div *ngIf="submitted && addForm.controls.gender.errors" style="color: rgb(245, 106, 106);">
+                    <div *ngIf="addForm.controls.gender.errors.required">
+                        Gender is required ..!
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <!-- End of  gender Text Box -->
+
+        <!-- Mobile Number Text Box -->
+        <div class="form-group row">
+            <label for="mobile_no" class="col-lg-2 col-md-2 col-sm-2 text-right font-weight-bold">
+                Mobile Number<sup style="color: red;">*</sup> <i class="fa fa-id-badge"></i>:
+            </label>
+            <div class="offset-lg-1 col-lg-7">
+                <input type="text" class="form-control " placeholder="Mobile Number" formControlName="mobile_no" />
+
+                <div *ngIf="submitted && addForm.controls.mobile_no.errors" style="color: rgb(245, 106, 106);">
+                    <div *ngIf="addForm.controls.mobile_no.errors.required">
+                        Mobile Number is required ..!
+                    </div>
+                    <div *ngIf="addForm.controls.mobile_no.errors.pattern">
+                        Mobile Number must be of 10 digits ..!
+                    </div>
+                    <div *ngIf="addForm.controls.mobile_no.errors.startWith">
+                        Mobile Number must begin with 6 to 9 ..!
+                    </div>
+                    <div *ngIf="addForm.controls.mobile_no.errors.containSpace">
+                        Mobile Number Should Not Contain space ..!
+                    </div>
+                    <div *ngIf="addForm.controls.mobile_no.errors.hasNumber">
+                        Mobile Number must Not Contain any alphabets ..!
+                    </div>
+                    <div *ngIf="addForm.controls.mobile_no.errors.hasSpecialCharacters">
+                        Mobile Numbere must Not Contain any Special Charater..!
+                    </div>
+                </div>
+                <div *ngIf="checkMobile" style="color: rgb(245, 106, 106);">
+                    Mobile Already Exist try for diffrent ..!
+                </div>
+            </div>
+
+        </div>
+        <!-- End of  Mobile Number Text Box -->
+
+        <!-- Email Text Box -->
+        <div class="form-group row">
+            <label for="emailId" class="col-lg-2 col-md-2 col-sm-2 text-right font-weight-bold">
+                Email<sup style="color: red;">*</sup> <i class="fa fa-envelope"></i>:
+            </label>
+            <div class="offset-lg-1 col-lg-7">
+                <input type="email" class="form-control " placeholder="e.g: abc@example.com"
+                    formControlName="emailId" />
+
+                <div *ngIf="submitted && addForm.controls.emailId.errors" style="color: rgb(245, 106, 106);">
+                    <div *ngIf="addForm.controls.emailId.errors.required">
+                        Email is required ..!
+                    </div>
+                    <div *ngIf="addForm.controls.emailId.errors.email">
+                        Invalid Email Address ..!
+                    </div>
+                </div>
+                <div *ngIf="checkEmail" style="color: rgb(245, 106, 106);">
+                    Email Already Exist try for diffrent ..!
+                </div>
+            </div>
+        </div>
+        <!-- End of  Email Text Box -->
+
+        <!-- Username text box -->
+        <div class="form-group row">
+            <label for="user_name" class="col-lg-2 col-md-2 col-sm-2 text-right font-weight-bold">
+                User Name<sup style="color: red;">*</sup> <i class="fa fa-user-o"></i>:
+            </label>
+            <div class="offset-lg-1 col-lg-7">
+                <input type="text" class="form-control " placeholder="User Name" formControlName="user_name" />
+
+                <div *ngIf="submitted && addForm.controls.user_name.errors" style="color: rgb(245, 106, 106);">
+                    <div *ngIf="addForm.controls.user_name.errors.required">
+                        User Name is required ..!
+                    </div>
+                    <div *ngIf="addForm.controls.user_name.errors.startWith">
+                        must begin with alphabets only ..!
+                    </div>
+                    <div *ngIf="addForm.controls.user_name.errors.minlength">
+                        userName Must be atleast 4 digit long ..!
+                    </div>
+                    <div *ngIf="addForm.controls.user_name.errors.containSpace">
+                        UserName Should Not Contain space ..!
+                    </div>
+                </div>
+                <div *ngIf="checkUserName" style="color: rgb(245, 106, 106);">
+                    User Name Already Exist try for diffrent ..!
+                </div>
+            </div>
+
+        </div>
+        <!-- End of username text box -->
+
+        <!-- Password Text Box -->
+        <div class="form-group row">
+            <label for="password" class="col-lg-2 col-md-2 col-sm-2 text-right font-weight-bold">
+                Password<sup style="color: red;">*</sup> <i class="fa fa-key"></i>:
+            </label>
+            <div class="offset-lg-1 col-lg-7">
+                <input type="password" class="form-control " placeholder="Password" formControlName="password" />
+
+                <div *ngIf="submitted && addForm.controls.password.errors" style="color: rgb(245, 106, 106);">
+                    <div *ngIf="addForm.controls.password.errors.required">
+                        Password is required ..!
+                    </div>
+                    <div *ngIf="addForm.controls.password.errors.minlength">
+                        Password Must be atleast 8 digit long ..!
+                    </div>
+                    <div *ngIf="addForm.controls.password.errors.hasNumber">
+                        Must contain at least 1 number..!
+                    </div>
+                    <div *ngIf="addForm.controls.password.errors.hasSpecialCharacters">
+                        Must contain at least 1 Special Character..!
+                    </div>
+                    <div *ngIf="addForm.controls.password.errors.hasSmallCase">
+                        Must contain at least 1 Letter in Small Case..!
+                    </div>
+                    <div *ngIf="addForm.controls.password.errors.hasCapitalCase">
+                        Must contain at least 1 Letter in Capital Case..!
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <!-- End of  Password Text Box -->
+        <br><br>
+        <div class="text-center">
+            <button class="btn btn-warning" *ngIf="checkValue==1">Check Details <i class="fa fa-check"></i></button>
+            <button class="btn btn-success" *ngIf="checkValue==2">AddUser <i class="fa fa-user-plus"></i></button>
+            <button class="btn btn-danger" *ngIf="checkValue==3">Please Wait..<i
+                    class="fa fa-refresh fa-spin"></i></button>
+            <button class="btn btn-success" *ngIf="checkValue==4">Adding..<i
+                    class="fa fa-refresh fa-spin"></i></button>&nbsp; &nbsp;
+            <button class="btn btn-danger" type="reset">Cancel</button> &nbsp; &nbsp;
+            <a class="btn btn-link" routerLink="/login" style="color: white;"><u>Back to login Page<i
+                        class="fa fa-sign-out"></i></u></a>
+        </div>
+    </form>
+</div>
